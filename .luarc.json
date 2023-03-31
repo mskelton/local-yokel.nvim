@@ -1,0 +1,7 @@
+{
+    "workspace.checkThirdParty": false,
+    "diagnostics.disable": [
+        "param-type-mismatch",
+        "return-type-mismatch"
+    ]
+}
