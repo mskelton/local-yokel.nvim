@@ -1,3 +1,5 @@
+local config = require("local-yokel.config")
+
 local M = {}
 
 --- @param glob string
@@ -21,6 +23,12 @@ end
 
 local function get_file_prefix()
 	local prefix = string.gsub(vim.fn.expand("%:t"), "%..*$", "")
+	local postfixes = config.get("relatives.postfixes")
+
+	for _, postfix in pairs(postfixes or {}) do
+		prefix = string.gsub(prefix, postfix, "")
+	end
+
 	return prefix
 end
 

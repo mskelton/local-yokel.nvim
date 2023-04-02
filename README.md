@@ -51,3 +51,19 @@ around when it reaches the start or end of the current directory.
 require('local-yokel.relatives').next()
 require('local-yokel.relatives').prev()
 ```
+
+For some languages or frameworks, sibling files may not be purely based on
+extensions. For example, in Go, test files are located next to source files with
+a `_test.go` postfix. By specifying a table of postfixes via the config
+`relatives.postfixes`, you can account for these situations.
+
+```lua
+require('local-yokel').setup({
+  relatives = {
+    postfixes = { "_test" },
+  },
+})
+```
+
+_Note: `postfixes` is a table of Lua patterns, so you can use any pattern
+matching expressions available in Lua patterns._

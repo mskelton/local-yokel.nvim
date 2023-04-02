@@ -1,4 +1,5 @@
 ---@diagnostic disable: param-type-mismatch
+local config = require("local-yokel.config")
 
 local M = {}
 
@@ -15,7 +16,9 @@ local function resolve(arg)
 	return dir, name, head
 end
 
-M.setup = function()
+M.setup = function(conf)
+	config.load(conf)
+
 	-- Create new file in current directory
 	vim.api.nvim_create_user_command("E", function(opts)
 		local dir, name = resolve(opts.args)
