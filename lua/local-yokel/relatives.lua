@@ -28,11 +28,18 @@ local function get_file_prefix(file)
 	return prefix
 end
 
+local function pwd()
+	local dir = vim.fn.expand("%:p:h")
+	dir = string.gsub(dir, "%[", "\\[")
+	dir = string.gsub(dir, "%]", "\\]")
+
+	return dir
+end
+
 --- @param prefix string?
 local function read_dir(prefix)
-	local dir = vim.fn.expand("%:p:h")
 	local glob = (prefix or "") .. "*"
-	local res = vim.fn.globpath(dir, glob, true, true)
+	local res = vim.fn.globpath(pwd(), glob, true, true)
 
 	if prefix == nil then
 		return res
